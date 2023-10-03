@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tabela Editável com Vue.js e Bulma</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <style>
+        /* Estilos personalizados, se necessário */
+        .table-container {
+            overflow-x: auto;
+        }
+        .table-container table {
+            width: auto !important;
+        }
+        .table-container td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 150px;
+            max-width: 150px;
+        }
+        .table-container td:focus {
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="section">
+        <div class="container">
+            <div class="table-container">
+                <table class="table is-bordered is-fullwidth is-variable">
+                    <tbody>
+                        <tr v-for="(row, rowIndex) in tableData" :key="rowIndex">
+                            <td v-for="(cell, colIndex) in row" :key="colIndex" :contenteditable="colIndex < initialColumns">{{ cell }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="field is-grouped">
+                <p class="control">
+                    <button class="button is-primary" @click="adicionarLinha">Adicionar Linha</button>
+                </p>
+                <p class="control">
+                    <button class="button is-primary" @click="adicionarColuna">Adicionar Coluna</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                tableData: [
+                    ['']
+                ],
+                initialColumns: 1
+            },
+            methods: {
+                adicionarLinha() {
+                    const novaLinha = Array(this.initialColumns).fill('');
+                    this.tableData.push(novaLinha);
+                },
+                adicionarColuna() {
+                    this.tableData.forEach(item => {
+                        item.push('');
+                    });
+                    this.initialColumns++;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
