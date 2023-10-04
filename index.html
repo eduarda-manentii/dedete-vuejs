@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tabela Editável com Vue.js e Bulma</title>
+    <title> Dedete </title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <style>
@@ -44,6 +44,12 @@
                 <p class="control">
                     <button class="button is-primary" @click="adicionarColuna">Adicionar Coluna</button>
                 </p>
+                <p class="control">
+                    <button class="button is-danger" @click="removerLinha">Remover Linha</button>
+                </p>
+                <p class="control">
+                    <button class="button is-danger" @click="removerColuna">Remover Coluna</button>
+                </p>
             </div>
         </div>
     </div>
@@ -67,7 +73,20 @@
                         item.push('');
                     });
                     this.initialColumns++;
-                }
+                },
+                removerLinha() {
+                    if (this.tableData.length > 1) {
+                        this.tableData.pop();
+                    }
+                },
+                removerColuna() {
+                    if (this.initialColumns > 1) {
+                        this.tableData.forEach(item => {
+                            item.pop();
+                        });
+                        this.initialColumns--;
+                    }
+                },
             }
         });
     </script>
