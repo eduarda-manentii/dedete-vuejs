@@ -4,7 +4,7 @@
     <title> Dedete </title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <style>
+   <style>
         .table-container {
             overflow-x: auto;
         }
@@ -39,6 +39,9 @@
 
             <div class="field is-grouped">
                 <p class="control">
+                    <button class="button is-info" @click="importarRegistro">Importar Registro</button>
+                </p>
+                <p class="control">
                     <button class="button is-primary" @click="adicionarLinha">Adicionar Linha</button>
                 </p>
                 <p class="control">
@@ -61,7 +64,8 @@
                 tableData: [
                     ['']
                 ],
-                initialColumns: 1
+                initialColumns: 1,
+                apiRecord: {}
             },
             methods: {
                 adicionarLinha() {
@@ -87,6 +91,9 @@
                         this.initialColumns--;
                     }
                 },
+                importarRegistro() {
+                    //todo: import
+                }
             }
         });
     </script>
