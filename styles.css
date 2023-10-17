@@ -1,0 +1,17 @@
+.table-container {
+  overflow-x: auto;
+}
+.table-container table {
+  width: auto !important;
+}
+.table-container td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 150px;
+  max-width: 150px;
+  min-width: 150px;
+}
+.table-container td:focus {
+  background-color: transparent;
+}
